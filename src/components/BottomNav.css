@@ -1,0 +1,29 @@
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #3b82f6;
+    border-radius: 20px 20px 0 0; /* Rounded top corners */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow for elevation */
+    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #0077ff; /* Set background color according to your theme */
+    color: white;
+      
+  }
+  
+  .nav-item {
+    color: white;
+    font-size: 28px; /* Larger icons */
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth scaling on click */
+  }
+  
+  .nav-item:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+  

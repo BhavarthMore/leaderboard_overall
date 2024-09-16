@@ -1,0 +1,32 @@
+.leaderboard-tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #f3f4f6;
+    padding: 10px;
+    margin: 10px 20px;
+    border-radius: 12px; /* Soft rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for a floating effect */
+  }
+  
+  button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #e5e7eb;
+    border-radius: 25px; /* More rounded buttons */
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+  }
+  
+  button.active {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #3b82f6; /* Change color on hover */
+    color: white;
+  }
+  

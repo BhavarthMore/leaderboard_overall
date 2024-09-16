@@ -1,0 +1,41 @@
+.top-three {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  background: linear-gradient(135deg, #fef3c7, #fcd34d); /* Gradient for visual interest */
+  margin: 15px;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.top-user {
+  text-align: center;
+}
+
+.avatar {
+  font-size: 50px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Avatar shadow */
+}
+
+.rank-1 .avatar {
+  border: 3px solid gold;
+}
+
+.rank-2 .avatar {
+  border: 3px solid silver;
+}
+
+.rank-3 .avatar {
+  border: 3px solid bronze;
+}
+
+.timer {
+  text-align: center;
+  margin-top: 10px;
+  color: #ef4444; /* Red for countdown urgency */
+  font-weight: bold;
+}

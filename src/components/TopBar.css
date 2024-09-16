@@ -1,0 +1,22 @@
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 0 0 20px 20px; /* Rounded bottom corners */
+  }
+  
+  .balance {
+    display: flex;
+    gap: 20px;
+    font-weight: bold; /* Emphasize balance */
+  }
+  
+  .profile-icon {
+    font-size: 24px; /* Increase size for better visibility */
+  }
+  
