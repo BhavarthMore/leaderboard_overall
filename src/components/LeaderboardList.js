@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './LeaderboardList.css';
-
+import LeaderboardTabs from './LeaderboardTabs';
 const LeaderboardList = () => {
   const [users, setUsers] = useState([]);
 
@@ -27,6 +27,7 @@ const LeaderboardList = () => {
 
   return (
     <div className="leaderboard-list">
+      <LeaderboardTabs/>
       {usersWithRank.map((user) => (
         <div
           className={`user-row ${user.rank === 1 ? 'rank-1' : user.rank === 2 ? 'rank-2' : user.rank === 3 ? 'rank-3' : ''}`}
