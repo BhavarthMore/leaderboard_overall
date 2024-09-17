@@ -1,0 +1,30 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .view-switcher {
+    margin: 20px;
+  }
+  
+  .view-switcher button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+  }
+  
+  .view-switcher button.active {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .view-container {
+    width: 100%;
+    max-width: 800px;
+  }
+  

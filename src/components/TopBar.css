@@ -8,6 +8,7 @@
     font-size: 16px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
     border-radius: 0 0 20px 20px; /* Rounded bottom corners */
+    font-weight: bold
   }
   
   .balance {
@@ -18,5 +19,7 @@
   
   .profile-icon {
     font-size: 24px; /* Increase size for better visibility */
+    margin-right: 20px;
   }
-  
+
+ 
