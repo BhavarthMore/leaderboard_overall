@@ -75,6 +75,10 @@ app.post('/api/claim-points', (req, res) => {
     });
   });
 
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).json({ message: 'Internal Server Error', error: err.message });
+});
 
 
 // Start the server
