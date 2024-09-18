@@ -8,7 +8,7 @@ const LeaderboardList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/users');
+        const response = await axios.get('https://vercel.com/sonumore6715-gmailcoms-projects/leaderboard-overall-api/users');
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
