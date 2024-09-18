@@ -6,36 +6,47 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to SQLite database
-const db = new sqlite3.Database(':memory:'); // Use a file-based database for persistence
+const db = new sqlite3.Database('./database.db'); // Store the database in a file for persistence
+ // Use a file-based database for persistence
 
 // Create table and insert sample data
+// Create table if it doesn't exist and insert sample data
 db.serialize(() => {
-    db.run('CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, rank INTEGER, prize TEXT, points INTEGER)');
+  db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, rank INTEGER, prize TEXT, points INTEGER)');
 
-    const stmt = db.prepare('INSERT INTO users (name, rank, prize, points) VALUES (?, ?, ?, ?)');
-    stmt.run('Manoj', 4, '₹7', 0);
-    stmt.run('AMIT', 5, '₹6', 0);
-    stmt.run('Karan', 6, '₹5', 0);
-    stmt.run('Jaga', 7, '₹4', 0);
-    stmt.run('Ashish', 2, '₹111', 0);
-    stmt.run('Mahak', 1, '₹21', 0);
-    stmt.run('Tejas', 3, '₹10', 0);
-    stmt.run('Sonu', 2, '₹111', 0);
-    stmt.run('Kaushik', 1, '₹21', 0);
-    stmt.run('Suraj', 3, '₹10', 0);
-    stmt.finalize();
+  // Check if table is empty before inserting sample data
+  db.get('SELECT COUNT(*) AS count FROM users', (err, row) => {
+      if (err) {
+          console.error('Error checking users table:', err);
+      } else if (row.count === 0) {
+          const stmt = db.prepare('INSERT INTO users (name, rank, prize, points) VALUES (?, ?, ?, ?)');
+          stmt.run('Manoj', 4, '₹7', 0);
+          stmt.run('AMIT', 5, '₹6', 0);
+          stmt.run('Karan', 6, '₹5', 0);
+          stmt.run('Jaga', 7, '₹4', 0);
+          stmt.run('Ashish', 2, '₹111', 0);
+          stmt.run('Mahak', 1, '₹21', 0);
+          stmt.run('Tejas', 3, '₹10', 0);
+          stmt.run('Sonu', 2, '₹111', 0);
+          stmt.run('Kaushik', 1, '₹21', 0);
+          stmt.run('Suraj', 3, '₹10', 0);
+          stmt.finalize();
+      }
+  });
 });
+
 
 // API endpoint to get user data
 app.get('/api/users', (req, res) => {
-    db.all('SELECT * FROM users ORDER BY points DESC, rank ASC', [], (err, rows) => {
-        if (err) {
-            res.status(500).send(err.message);
-        } else {
-            res.json(rows);
-        }
-    });
+  db.all('SELECT * FROM users ORDER BY points DESC, rank ASC', [], (err, rows) => {
+      if (err) {
+          console.error('Error fetching users:', err);
+          return res.status(500).json({ message: 'Server Error', error: err.message });
+      }
+      res.json(rows);
+  });
 });
+
 
 // API endpoint to claim points
 app.post('/api/claim-points', (req, res) => {
