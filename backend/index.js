@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors({
   origin: "https://leaderboard-overall-qss1.vercel.app",
-  methods: "POST", "GET",
+  methods: ["POST", "GET"],
   credentials: true
 }));
 
