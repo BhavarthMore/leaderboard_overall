@@ -2,12 +2,7 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const app = express();
-app.use(cors({
-  origin: "https://leaderboard-overall-qss1.vercel.app",
-  methods: ["POST", "GET"],
-  credentials: true
-}));
-
+app.use(cors());
 app.use(express.json());
 
 // Connect to SQLite database
@@ -17,27 +12,27 @@ const db = new sqlite3.Database('./database.db'); // Store the database in a fil
 // Create table and insert sample data
 // Create table if it doesn't exist and insert sample data
 db.serialize(() => {
-  db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, rank INTEGER, prize TEXT, points INTEGER)');
+    db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, rank INTEGER, prize TEXT, points INTEGER)');
 
-  // Check if table is empty before inserting sample data
-  db.get('SELECT COUNT(*) AS count FROM users', (err, row) => {
-      if (err) {
-          console.error('Error checking users table:', err);
-      } else if (row.count === 0) {
-          const stmt = db.prepare('INSERT INTO users (name, rank, prize, points) VALUES (?, ?, ?, ?)');
-          stmt.run('Manoj', 4, '₹7', 0);
-          stmt.run('AMIT', 5, '₹6', 0);
-          stmt.run('Karan', 6, '₹5', 0);
-          stmt.run('Jaga', 7, '₹4', 0);
-          stmt.run('Ashish', 2, '₹111', 0);
-          stmt.run('Mahak', 1, '₹21', 0);
-          stmt.run('Tejas', 3, '₹10', 0);
-          stmt.run('Sonu', 2, '₹111', 0);
-          stmt.run('Kaushik', 1, '₹21', 0);
-          stmt.run('Suraj', 3, '₹10', 0);
-          stmt.finalize();
-      }
-  });
+    // Check if table is empty before inserting sample data
+    db.get('SELECT COUNT(*) AS count FROM users', (err, row) => {
+        if (err) {
+            console.error('Error checking users table:', err);
+        } else if (row.count === 0) {
+            const stmt = db.prepare('INSERT INTO users (name, rank, prize, points) VALUES (?, ?, ?, ?)');
+            stmt.run('Manoj', 4, '₹7', 0);
+            stmt.run('AMIT', 5, '₹6', 0);
+            stmt.run('Karan', 6, '₹5', 0);
+            stmt.run('Jaga', 7, '₹4', 0);
+            stmt.run('Ashish', 2, '₹111', 0);
+            stmt.run('Mahak', 1, '₹21', 0);
+            stmt.run('Tejas', 3, '₹10', 0);
+            stmt.run('Sonu', 2, '₹111', 0);
+            stmt.run('Kaushik', 1, '₹21', 0);
+            stmt.run('Suraj', 3, '₹10', 0);
+            stmt.finalize();
+        }
+    });
 });
 
 
@@ -75,10 +70,6 @@ app.post('/api/claim-points', (req, res) => {
     });
   });
 
-app.use((err, req, res, next) => {
-    console.error('Unhandled error:', err);
-    res.status(500).json({ message: 'Internal Server Error', error: err.message });
-});
 
 
 // Start the server
