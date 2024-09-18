@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const app = express();
 app.use(cors({
-  origin: "https://leaderboard-overall-qss1.vercel.app/",
+  origin: "https://vercel.com/sonumore6715-gmailcoms-projects/leaderboard-overall/",
   methods: ["POST", "GET"],
   credentials: true
 }));
